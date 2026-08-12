@@ -11,23 +11,34 @@ An end-to-end Retrieval-Augmented Generation (RAG) system built with LangChain, 
 ## Setup & Installation
 
 1. **Clone the repository:**
+
 git clone https://github.com/adjoshi24/academic-rag-eval.git
+
 cd academic-rag-eval
 
 2. **Install dependencies:**
 python -m venv .venv
+
 source .venv/bin/activate  # On Windows: ..venv\Scripts\Activate.ps1
+
 pip install -r requirements.txt
 
 3. **Configure API Key:**
+
 Create a `.env` file in the root directory:
+
 GEMINI_API_KEY="your_api_key_here"
 
 4. **Run Ingestion & Evaluation:**
+
 python ingestion-script.py
+
 python evaluate_rag.py
 
 5. **Run full RAG-pipeline (enter a query)**:
+
 Navigate to ragChain.py
+
 Modify query variable
+
 Run script: python ragChain.py
