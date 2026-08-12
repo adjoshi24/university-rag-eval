@@ -40,12 +40,9 @@ from evalDataset import EVAL_QUESTIONS
 
 load_dotenv()
 
-print("1. Loading embedding model and vector store...")
 base_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 vector_db = Chroma(persist_directory="./chroma_db", embedding_function=base_embeddings)
 
-# 2. Extract stored documents from ChromaDB to build the BM25 index
-print("2. Constructing BM25 sparse keyword retriever...")
 all_docs = vector_db.get()
 stored_documents = [
     Document(page_content=text, metadata=meta) 
@@ -57,8 +54,6 @@ bm25_retriever.k = 3
 
 vector_retriever = vector_db.as_retriever(search_kwargs={"k": 3})
 
-# 3. Create Hybrid EnsembleRetriever (50% BM25, 50% Vector Search)
-print("3. Building Hybrid Ensemble Retriever...")
 ensemble_retriever = EnsembleRetriever(
     retrievers=[bm25_retriever, vector_retriever],
     weights=[0.5, 0.5]
@@ -85,7 +80,6 @@ rag_chain = (
     | StrOutputParser()
 )
 
-print("4. Running benchmark queries through Hybrid RAG pipeline...")
 questions = []
 answers = []
 contexts = []
@@ -126,7 +120,6 @@ metrics_list = [
     context_recall,
 ]
 
-print("\n--- Running RAGAS Evaluation Framework (Hybrid Search) ---")
 results = evaluate(
     dataset=dataset,
     metrics=metrics_list,
@@ -136,9 +129,7 @@ results = evaluate(
     raise_exceptions=True
 )
 
-print("\n================ HYBRID BENCHMARK RESULTS ================")
 df_results = results.to_pandas()
 print(df_results)
 
 df_results.to_csv("rag_evaluation_report_hybrid.csv", index=False)
-print("\nEvaluation report saved to 'rag_evaluation_report_hybrid.csv'.")

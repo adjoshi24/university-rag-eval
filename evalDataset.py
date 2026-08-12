@@ -1,4 +1,3 @@
-# Benchmark questions paired with expert reference answers from the catalog
 EVAL_QUESTIONS = [
     {
         "question": "What are the general graduation requirements?",
