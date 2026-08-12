@@ -1,0 +1,17 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Local Chroma Vector Database (don't upload generated vectors)
+chroma_db/
+
+# Environment variables (keep API keys private)
+.env
+
+# Python Cache & Logs
+__pycache__/
+*.pyc
+*.csv
+
+.vscode/

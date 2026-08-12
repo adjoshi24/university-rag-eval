@@ -1,0 +1,13 @@
+langchain
+langchain-community
+langchain-core
+langchain-classic
+langchain-huggingface
+langchain-google-genai
+chromadb
+rank-bm25
+pypdf
+ragas
+datasets
+pandas
+python-dotenv
